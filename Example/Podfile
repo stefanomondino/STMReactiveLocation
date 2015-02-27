@@ -1,0 +1,14 @@
+source 'https://github.com/CocoaPods/Specs.git'
+
+target 'STMReactiveLocation', :exclusive => true do
+  pod "STMReactiveLocation", :path => "../"
+end
+
+target 'Tests', :exclusive => true do
+  pod "STMReactiveLocation", :path => "../"
+
+  pod 'Specta'
+  pod 'Expecta'
+  pod 'FBSnapshotTestCase'
+  pod 'Expecta+Snapshots'
+end
