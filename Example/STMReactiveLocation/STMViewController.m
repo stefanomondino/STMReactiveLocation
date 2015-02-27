@@ -7,8 +7,9 @@
 //
 
 #import "STMViewController.h"
-
+#import <STMReactiveLocationManager.h>
 @interface STMViewController ()
+@property (weak, nonatomic) IBOutlet UILabel *lbl_currentPosition;
 
 @end
 
@@ -17,6 +18,11 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    [[STMReactiveLocationManager sharedManager] requestWhenInUseAuthorization];
+    RAC(self.lbl_currentPosition,text) = [[[STMReactiveLocationManager sharedManager] rac_signalForMostAccurateLocationUpdates] map:^id(CLLocation* value) {
+        return [value description];
+    }];
+    
 	// Do any additional setup after loading the view, typically from a nib.
 }
 
